@@ -1,35 +1,56 @@
-
-// const db = require("./models");
+const cheerio = require("cheerio");
 const router = require("express").Router();
 const axios = require("axios");
+const db = require("../models");
+const add = require("../controllers/notes")
+
 
 router.get("/", function(req, res) {
-    console.log("routes")
 
     res.render("index")
 })
 
 
 router.get("/scrape", function(req, res) {
-    axios.get("https://www.ksl.com/").then(function(response) {
+    return axios.get("https://www.ksl.com/").then(function(response) {
 
-        var $ = cheerio.load(ressonse.data);
+        var $ = cheerio.load(response.data);
 
         var results = []
 
-        $("div.headline").each(function(i, element) {
+        $("div.queue_story").each(function(i, element) {
+        
+            var title = $(this).find("h2").text();
+            
+            var link = $(this).children().children("a").attr("href");
+            
+            var img = $(this).find("img").attr("data-srcset");
 
-            var title = $(element).text();
-
-            var link = $(element).children().attr("href");
+            var sum = $(this).find("h5").text()
+            // console.log("$this: ", $(this))
 
             results.push({
                 title: title,
-                link: link
-            });
-            res.render("scrape", results)
+                link: "https://www.ksl.com" + link,
+                img: img,
+                sum: sum
+                
+            }); 
+            
+            console.log("results: ", results)
         });
+           return db.Headline.create(results, function(err, headlines) {
+                if (err) {
+                  return  db.Headline.find().then(function(headlines){
+                        res.render("scrape", {headlines: headlines})
+                    })
+                } else {
+                    res.render("scrape", {headlines: results})
+                }
+                })
+           
     });
+    
 });
 
 module.exports = router

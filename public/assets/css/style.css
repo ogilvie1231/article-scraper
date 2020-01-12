@@ -1,0 +1,27 @@
+.help {
+   color: blueviolet;
+}
+body {
+    background-image: url("../images/back.jpg");
+    
+}
+.jumbotron {
+    opacity: .8;
+}
+.jumbotron:first-of-type {
+    padding-top: 10%;
+}
+img {
+    float: left;
+    width: 150px;
+}
+.sum {
+    padding-top: 1%;
+}
+.clrFx {
+    clear: both;
+    padding-top: 2%;
+}
+p {
+    padding-left: 15%;
+}

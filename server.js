@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 const hb = require("express-handlebars");
 
 // importing models folder
-// require("./models");
+require("./models");
 
 const PORT = process.env.PORT || 3030;
 
