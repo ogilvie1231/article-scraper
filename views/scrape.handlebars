@@ -1,24 +1,23 @@
-
-
 {{#each headlines}}
 
-    <div class="top">
+<div class="top">
 
-    </div>
+</div>
 
 <div class="jumbotron">
   <h4 class="text-center">{{this.title}}</h2>
-  {{!-- <p class="lead">{{this.title}}</p> --}}
-  <hr class="my-4">
-  <div>
-    <img src="{{this.img}}" alt="article image">
-    <p class="sum"><strong>{{this.sum}}</strong></p>
-  </div>
-  <div class="clrFx">
+    {{!-- <p class="lead">{{this.title}}</p> --}}
+    <hr class="my-4">
+    <div>
+      <img src="{{this.img}}" alt="article image">
+      <p class="sum"><strong>{{this.sum}}</strong></p>
+    </div>
+    <div class="clrFx">
       <a class="btn btn-primary btn-lg" href="{{this.link}}" role="button" target="_blank">Learn More</a>
-      <a id="addFav" class="btn btn-primary btn-lg" data-link="{{this.link}}" href="" role="button" target="_blank">Add to Favorites</a>
-  </div>
+      <button class="addFav" class="btn btn-primary btn-lg" data-title="{{this.title}}" data-img="{{this.img}}" data-sum="{{this.sum}}"  data-id="{{this.id}}" data-link="{{this.link}}" role="button">Add to
+        Favorites</button>
+    </div>
 </div>
 
 
-{{/each}} 
+{{/each}}

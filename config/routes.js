@@ -10,6 +10,19 @@ router.get("/", function(req, res) {
     res.render("index")
 })
 
+router.post("/favorites", function(req, res) {
+    const { title, link, img, summary, id } = req.body
+
+    db.Favorites.create({ _headlineId: id, title, link, img, summary })
+})
+
+router.get("/favorites", function(req, res) {
+    return  db.Favorites.find().then(function(favorites){
+        console.log('favorites', favorites)
+        res.render("favorites", {favorites: favorites})
+    })
+})
+
 
 router.get("/scrape", function(req, res) {
     return axios.get("https://www.ksl.com/").then(function(response) {
@@ -37,7 +50,7 @@ router.get("/scrape", function(req, res) {
                 
             }); 
             
-            console.log("results: ", results)
+            // console.log("results: ", results)
         });
            return db.Headline.create(results, function(err, headlines) {
                 if (err) {
@@ -45,7 +58,7 @@ router.get("/scrape", function(req, res) {
                         res.render("scrape", {headlines: headlines})
                     })
                 } else {
-                    res.render("scrape", {headlines: results})
+                    res.render("scrape", {headlines: headlines})
                 }
                 })
            
