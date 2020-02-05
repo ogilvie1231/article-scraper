@@ -66,4 +66,18 @@ router.get("/scrape", function(req, res) {
     
 });
 
+
+router.delete("/api/delete/:id", function(req, res) {
+    var id = "id = " + req.params.id;
+    db.Favorites.deleteOne({ _headlineId: id })
+})
+// .catch(function(err) {
+//     // If an error occurred, send it to the client
+//     res.json(err);
+//   });
+
+
+     
+ 
+
 module.exports = router

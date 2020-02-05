@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const HeadlineSchema = new Schema({
+  _headlineId: {
+    type: Schema.Types.ObjectId,
+    ref: "Headline"
+  },
   title: {
     type: String,
     required: true,
