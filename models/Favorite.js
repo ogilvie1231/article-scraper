@@ -15,7 +15,7 @@ const FavoritesSchema = new Schema({
         // required: true
       },
       date: String,
-      saved: {
+      saved: { 
         type: Boolean,
         default: false
       },

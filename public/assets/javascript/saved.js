@@ -31,16 +31,12 @@ $(document).ready(function() {
         console.log("id: ", id)
         console.log('deleteFav button clicked')
         $.ajax({
-            url : "/api/delete/:id",
+            url : "/api/delete/" + id,
             type: "DELETE",
-            data: {id},
-            success: function( data ){
-
-            },
-            error: function( errorThrown ){
-                console.log( errorThrown );
-            }
-        });
+            
+        }).then(function() {
+            location.reload()
+        })
     })
 
 })

@@ -7,7 +7,11 @@ const add = require("../controllers/notes")
 
 router.get("/", function(req, res) {
 
-    res.render("index")
+    return  db.Headline.find().then(function(headlines){
+       
+        res.render("index", {headlines: headlines}) 
+    })
+    
 })
 
 router.post("/favorites", function(req, res) {
@@ -18,8 +22,9 @@ router.post("/favorites", function(req, res) {
 
 router.get("/favorites", function(req, res) {
     return  db.Favorites.find().then(function(favorites){
-        console.log('favorites', favorites)
-        res.render("favorites", {favorites: favorites})
+        // console.log('headlines: ', headlines)
+        // console.log('reverse: ', headlines.reverse())
+        res.render("favorites", {favorites: favorites.reverse()})
     })
 })
 
@@ -68,8 +73,11 @@ router.get("/scrape", function(req, res) {
 
 
 router.delete("/api/delete/:id", function(req, res) {
-    var id = "id = " + req.params.id;
-    db.Favorites.deleteOne({ _headlineId: id })
+    var id = req.params.id;
+    console.log("req: ", req.params.id)
+    db.Favorites.remove({ _id: req.params.id }).then(function() {
+      res.json({success: true, status: 200})
+    })
 })
 // .catch(function(err) {
 //     // If an error occurred, send it to the client
