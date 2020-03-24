@@ -5,7 +5,7 @@
 
 <h2>How it works</h2>
 
-<p>This scraper site uses Cherio to search for news headlines from www.KSL.com and displays. By clicking 'Learn More' you will be directed to the article. If you find something you like, you can click 'Add to Favorites.' The article will then be saved in a Mongo Database. Favorites will be displayed on the favorites page. If you want to see new article, simply click 'Scrape' in the top left corner of the page.</p>
+<p>This scraper site uses Cherio to search for news headlines from www.KSL.com and displays. By clicking 'Learn More' you will be directed to the article. If you find something you like, you can click 'Add to Favorites.' The article will then be saved in a Mongo Database. Favorites will be displayed on the favorites page. If you want to see new articles, simply click 'Scrape' in the top left corner of the page.</p>
 
 <h3>This project was built with:</h3>
 <ul>
